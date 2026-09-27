@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#08090c">
+<title>SARB VISUALS — Build Your Video</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#08090c;
+  color:#f5f5f5;
+  font-family:"DM Sans",sans-serif;
+  min-height:100vh;
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.container{
+  width:min(1180px,calc(100% - 32px));
+  margin:auto;
+}
+
+header{
+  height:76px;
+  border-bottom:1px solid #1d2026;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-family:"Space Grotesk",sans-serif;
+  font-weight:700;
+  letter-spacing:-.5px;
+  font-size:21px;
+}
+
+.back{
+  color:#aaa;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.hero{
+  padding:58px 0 35px;
+}
+
+.eyebrow{
+  color:#8d8f98;
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+
+h1{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(38px,6vw,68px);
+  line-height:.98;
+  letter-spacing:-3px;
+  max-width:750px;
+}
+
+.hero p{
+  color:#92959e;
+  max-width:650px;
+  line-height:1.7;
+  margin-top:20px;
+  font-size:15px;
+}
+
+.section{
+  padding:30px 0;
+}
+
+.section-title{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:22px;
+  margin-bottom:18px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.card{
+  background:#0e1014;
+  border:1px solid #24272e;
+  border-radius:18px;
+  padding:24px;
+  transition:.2s;
+  position:relative;
+}
+
+.card:hover{
+  border-color:#41454f;
+}
+
+.card.selected{
+  border-color:#fff;
+  box-shadow:0 0 0 1px #fff;
+}
+
+.card.popular{
+  border-color:#555;
+}
+
+.badge{
+  position:absolute;
+  top:14px;
+  right:14px;
+  font-size:10px;
+  background:#fff;
+  color:#000;
+  padding:5px 8px;
+  border-radius:999px;
+  font-weight:700;
+}
+
+.card h3{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:22px;
+  margin-bottom:8px;
+}
+
+.card .desc{
+  color:#888c96;
+  font-size:13px;
+  line-height:1.6;
+  min-height:62px;
+}
+
+.price{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:27px;
+  font-weight:700;
+  margin-top:20px;
+}
+
+.price small{
+  font-family:"DM Sans",sans-serif;
+  color:#777b84;
+  font-size:12px;
+  font-weight:400;
+}
+
+.select-btn{
+  margin-top:18px;
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #30333a;
+  background:#17191e;
+  color:#fff;
+}
+
+.card.selected .select-btn{
+  background:#fff;
+  color:#000;
+}
+
+.options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.option{
+  border:1px solid #2a2d34;
+  background:#101217;
+  color:#c6c8ce;
+  border-radius:11px;
+  padding:12px 16px;
+  min-width:92px;
+  text-align:center;
+  transition:.2s;
+}
+
+.option:hover{
+  border-color:#555;
+}
+
+.option.selected{
+  background:#fff;
+  color:#000;
+  border-color:#fff;
+  font-weight:700;
+}
+
+.option small{
+  display:block;
+  font-size:10px;
+  opacity:.6;
+  margin-top:3px;
+}
+
+.form-wrap{
+  display:grid;
+  grid-template-columns:1fr 370px;
+  gap:22px;
+  align-items:start;
+}
+
+.form-card{
+  background:#0e1014;
+  border:1px solid #22252c;
+  border-radius:20px;
+  padding:25px;
+}
+
+.field{
+  margin-bottom:17px;
+}
+
+.field label{
+  display:block;
+  font-size:13px;
+  color:#c9cbd0;
+  margin-bottom:8px;
+}
+
+.required{
+  color:#aaa;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  border:1px solid #292c33;
+  background:#0a0c10;
+  color:#fff;
+  border-radius:11px;
+  padding:13px 14px;
+  outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#666;
+}
+
+textarea{
+  min-height:130px;
+  resize:vertical;
+}
+
+input.error,
+select.error,
+textarea.error{
+  border-color:#ff5c5c;
+}
+
+.error-text{
+  color:#ff7373;
+  font-size:11px;
+  margin-top:6px;
+  display:none;
+}
+
+.error-text.show{
+  display:block;
+}
+
+.help{
+  color:#70747e;
+  font-size:11px;
+  margin-top:6px;
+  line-height:1.5;
+}
+
+.file-box{
+  border:1px dashed #353942;
+  border-radius:12px;
+  padding:16px;
+  background:#0a0c10;
+}
+
+.file-box input{
+  border:0;
+  padding:0;
+  background:transparent;
+}
+
+.file-list{
+  margin-top:10px;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.file-name{
+  font-size:11px;
+  color:#9da1aa;
+  word-break:break-all;
+}
+
+.addons{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.addon{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border:1px solid #292c33;
+  background:#0a0c10;
+  border-radius:12px;
+  padding:13px;
+}
+
+.addon-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.addon input{
+  width:auto;
+}
+
+.addon-name{
+  font-size:13px;
+}
+
+.addon-price{
+  color:#999da6;
+  font-size:12px;
+}
+
+.summary{
+  position:sticky;
+  top:20px;
+}
+
+.summary-card{
+  background:#0e1014;
+  border:1px solid #292c33;
+  border-radius:20px;
+  padding:23px;
+}
+
+.summary-title{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:20px;
+  margin-bottom:20px;
+}
+
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:9px 0;
+  color:#9498a1;
+  font-size:13px;
+  border-bottom:1px solid #191c21;
+}
+
+.summary-row strong{
+  color:#fff;
+  text-align:right;
+}
+
+.total{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  padding-top:20px;
+}
+
+.total span{
+  color:#888c95;
+  font-size:12px;
+}
+
+.total strong{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:30px;
+}
+
+.delivery{
+  margin-top:17px;
+  background:#15181e;
+  border-radius:12px;
+  padding:13px;
+  font-size:12px;
+  color:#a9adb6;
+  line-height:1.6;
+}
+
+.delivery strong{
+  color:#fff;
+}
+
+.submit{
+  width:100%;
+  border:0;
+  background:#fff;
+  color:#000;
+  border-radius:12px;
+  padding:15px;
+  font-weight:700;
+  margin-top:17px;
+  transition:.2s;
+}
+
+.submit:hover{
+  transform:translateY(-1px);
+}
+
+.submit:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+.note{
+  color:#686c75;
+  font-size:10px;
+  line-height:1.5;
+  margin-top:12px;
+  text-align:center;
+}
+
+footer{
+  border-top:1px solid #1c1f25;
+  margin-top:60px;
+  padding:30px 0 100px;
+  color:#62666f;
+  font-size:12px;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(10px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:1000;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(430px,100%);
+  background:#111318;
+  border:1px solid #30343c;
+  border-radius:22px;
+  padding:30px;
+  text-align:center;
+}
+
+.check{
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  background:#fff;
+  color:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 18px;
+  font-size:25px;
+}
+
+.modal h2{
+  font-family:"Space Grotesk",sans-serif;
+  margin-bottom:10px;
+}
+
+.modal p{
+  color:#969aa3;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.close-modal{
+  margin-top:20px;
+  border:1px solid #30343c;
+  background:#181b20;
+  color:#fff;
+  border-radius:10px;
+  padding:11px 20px;
+}
+
+.mobile-total{
+  display:none;
+}
+
+@media(max-width:850px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-wrap{
+    grid-template-columns:1fr;
+  }
+
+  .summary{
+    position:static;
+  }
+
+  .summary-card{
+    margin-bottom:20px;
+  }
+}
+
+@media(max-width:600px){
+  .container{
+    width:min(100% - 22px,1180px);
+  }
+
+  header{
+    height:66px;
+  }
+
+  .logo{
+    font-size:18px;
+  }
+
+  .hero{
+    padding:42px 0 25px;
+  }
+
+  h1{
+    font-size:43px;
+    letter-spacing:-2px;
+  }
+
+  .hero p{
+    font-size:14px;
+  }
+
+  .section{
+    padding:22px 0;
+  }
+
+  .card,
+  .form-card,
+  .summary-card{
+    padding:18px;
+  }
+
+  .options{
+    gap:8px;
+  }
+
+  .option{
+    flex:1;
+    min-width:calc(33.333% - 8px);
+    padding:11px 7px;
+    font-size:12px;
+  }
+
+  .option small{
+    font-size:9px;
+  }
+
+  .mobile-total{
+    position:fixed;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:900;
+    background:rgba(12,14,18,.96);
+    border-top:1px solid #292c33;
+    padding:12px 14px;
+    backdrop-filter:blur(12px);
+  }
+
+  .mobile-total .mt-label{
+    color:#8d919a;
+    font-size:11px;
+  }
+
+  .mobile-total strong{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:20px;
+  }
+
+  footer{
+    padding-bottom:90px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+    <div class="logo">SARB VISUALS</div>
+    <a class="back" href="javascript:history.back()">← Back</a>
+  </div>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <div class="eyebrow">AI VIDEO PRODUCTION</div>
+  <h1>Build your video.</h1>
+  <p>
+    Choose your production package, duration and format.
+    Tell us about your project and we'll review everything before confirming
+    the final scope, pricing and delivery timeline.
+  </p>
+</section>
+
+<section class="section">
+  <div class="section-title">01 — Choose package</div>
+
+  <div class="grid">
+
+    <div class="card selected" data-package="starter">
+      <h3>Starter</h3>
+      <div class="desc">
+        Professional AI-assisted video production for straightforward creative projects.
+      </div>
+      <div class="price" id="starterPrice">₹2,499 <small>starting</small></div>
+      <button class="select-btn" onclick="selectPackage('starter')">Selected</button>
+    </div>
+
+    <div class="card popular" data-package="cinematic">
+      <div class="badge">MOST POPULAR</div>
+      <h3>Cinematic</h3>
+      <div class="desc">
+        Advanced cinematic production with stronger visual direction and creative control.
+      </div>
+      <div class="price" id="cinematicPrice">₹5,999 <small>starting</small></div>
+      <button class="select-btn" onclick="selectPackage('cinematic')">Choose</button>
+    </div>
+
+    <div class="card" data-package="pro">
+      <h3>Pro</h3>
+      <div class="desc">
+        High-end AI production for demanding commercial, music and cinematic projects.
+      </div>
+      <div class="price" id="proPrice">₹12,999 <small>starting</small></div>
+      <button class="select-btn" onclick="selectPackage('pro')">Choose</button>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">02 — Video duration</div>
+
+  <div class="options" id="durationOptions">
+    <button class="option selected" data-value="10">10 sec</button>
+    <button class="option" data-value="20">20 sec</button>
+    <button class="option" data-value="30">30 sec</button>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">03 — Resolution</div>
+
+  <div class="options" id="resolutionOptions">
+    <button class="option" data-value="480p">480p</button>
+    <button class="option selected" data-value="720p">720p</button>
+    <button class="option" data-value="1080p">1080p</button>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">04 — Format</div>
+
+  <div class="options" id="formatOptions">
+    <button class="option selected" data-value="9:16">
+      9:16
+      <small>Vertical</small>
+    </button>
+
+    <button class="option" data-value="16:9">
+      16:9
+      <small>Landscape</small>
+    </button>
+
+    <button class="option" data-value="1:1">
+      1:1
+      <small>Square</small>
+    </button>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">05 — Add-ons</div>
+
+  <div class="addons">
+
+    <label class="addon">
+      <div class="addon-left">
+        <input type="checkbox" id="fpsAddon">
+        <div>
+          <div class="addon-name">FPS Boost</div>
+          <div class="addon-price">Higher frame-rate processing</div>
+        </div>
+      </div>
+      <div class="addon-price">+₹999</div>
+    </label>
+
+    <label class="addon">
+      <div class="addon-left">
+        <input type="checkbox" id="enhancedAddon">
+        <div>
+          <div class="addon-name">Video Enhanced</div>
+          <div class="addon-price">Enhanced finishing & quality</div>
+        </div>
+      </div>
+      <div class="addon-price">+₹1,499</div>
+    </label>
+
+  </div>
+</section>
+
+<section class="section" id="projectSection">
+  <div class="section-title">06 — Project details</div>
+
+  <div class="form-wrap">
+
+    <div class="form-card">
+
+      <div class="field">
+        <label for="name">Full name <span class="required">*</span></label>
+        <input id="name" type="text" placeholder="Your full name">
+        <div class="error-text" id="nameError">Please enter your name.</div>
+      </div>
+
+      <div class="field">
+        <label for="whatsapp">WhatsApp number <span class="required">*</span></label>
+        <input id="whatsapp" type="tel" placeholder="+91 XXXXX XXXXX">
+        <div class="error-text" id="whatsappError">Please enter a valid WhatsApp number.</div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email <span class="required">*</span></label>
+        <input id="email" type="email" placeholder="you@example.com">
+        <div class="error-text" id="emailError">Please enter a valid email address.</div>
+      </div>
+
+      <div class="field">
+        <label for="projectType">Project type <span class="required">*</span></label>
+
+        <select id="projectType">
+          <option value="">Select project type</option>
+          <option>Music Video</option>
+          <option>Instagram Reel</option>
+          <option>YouTube Video</option>
+          <option>Advertisement</option>
+          <option>Brand Content</option>
+          <option>Product Video</option>
+          <option>AI Character / Persona</option>
+          <option>Other</option>
+        </select>
+
+        <div class="error-text" id="projectTypeError">Please select a project type.</div>
+      </div>
+
+      <div class="field">
+        <label for="deadline">Preferred deadline</label>
+        <input id="deadline" type="date">
+        <div class="help">
+          This is your preferred date. Final delivery timing is confirmed after project review.
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="estimatedDelivery">Estimated delivery</label>
+        <input id="estimatedDelivery" type="text" readonly>
+        <div class="help">
+          Estimated only. Final timeline depends on project complexity and review.
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="brief">Project brief <span class="required">*</span></label>
+        <textarea id="brief" placeholder="Describe your idea, story, visual style, characters, references, music, scenes, or anything important we should know."></textarea>
+        <div class="error-text" id="briefError">Please describe your project.</div>
+      </div>
+
+      <div class="field">
+        <label for="links">Reference links</label>
+        <textarea id="links" style="min-height:90px" placeholder="Paste YouTube, Instagram, Google Drive, Pinterest, reference video or image links."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Reference files</label>
+
+        <div class="file-box">
+          <input id="files" type="file" multiple accept="image/*,video/*,.pdf">
+          <div class="help">
+            Images, videos or PDFs. Selected file names will be included in your WhatsApp order.
+          </div>
+
+          <div class="file-list" id="fileList"></div>
+        </div>
+
+        <div class="help">
+          WhatsApp does not allow a website to automatically attach local files.
+          After WhatsApp opens, attach the selected files manually before sending.
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="summary">
+
+      <div class="summary-card">
+
+        <div class="summary-title">Your project</div>
+
+        <div class="summary-row">
+          <span>Package</span>
+          <strong id="summaryPackage">Starter</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Duration</span>
+          <strong id="summaryDuration">10 sec</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Resolution</span>
+          <strong id="summaryResolution">720p</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Format</span>
+          <strong id="summaryFormat">9:16</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Add-ons</span>
+          <strong id="summaryAddons">None</strong>
+        </div>
+
+        <div class="total">
+          <span>Estimated total</span>
+          <strong id="summaryTotal">₹2,999</strong>
+        </div>
+
+        <div class="delivery">
+          <strong>Estimated delivery</strong><br>
+          <span id="summaryDelivery">2–3 business days</span>
+        </div>
+
+        <button class="submit" id="submitBtn" onclick="submitOrder()">
+          Continue on WhatsApp →
+        </button>
+
+        <div class="note">
+          Final scope, price and timeline will be confirmed after project review.
+        </div>
+
+      </div>
+
+    </aside>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    © 2026 SARB VISUALS — AI Video Production
+  </div>
+</footer>
+
+<div class="mobile-total">
+  <div>
+    <div class="mt-label">Estimated total</div>
+    <strong id="mobileTotal">₹2,999</strong>
+  </div>
+
+  <button
+    class="submit"
+    style="width:auto;margin:0;padding:11px 16px"
+    onclick="submitOrder()">
+    Order →
+  </button>
+</div>
+
+<div class="modal" id="successModal">
+  <div class="modal-box">
+    <div class="check">✓</div>
+
+    <h2>Order ready</h2>
+
+    <p>
+      Your project details have been prepared.
+      WhatsApp will open so you can review the order and attach your reference files.
+    </p>
+
+    <button class="close-modal" onclick="closeModal()">
+      Close
+    </button>
+  </div>
+</div>
+
+<script>
+
+const WHATSAPP_NUMBER = "918837673936";
+
+const pricing = {
+
+  starter:{
+    "480p":{
+      10:2499,
+      20:4199,
+      30:5499
+    },
+    "720p":{
+      10:2999,
+      20:4999,
+      30:6999
+    },
+    "1080p":{
+      10:3999,
+      20:6499,
+      30:8999
+    }
+  },
+
+  cinematic:{
+    "480p":{
+      10:5999,
+      20:9499,
+      30:12999
+    },
+    "720p":{
+      10:6999,
+      20:10999,
+      30:14999
+    },
+    "1080p":{
+      10:8999,
+      20:14999,
+      30:19999
+    }
+  },
+
+  pro:{
+    "480p":{
+      10:12999,
+      20:19999,
+      30:25999
+    },
+    "720p":{
+      10:14999,
+      20:22999,
+      30:29999
+    },
+    "1080p":{
+      10:18999,
+      20:28999,
+      30:37999
+    }
+  }
+
+};
+
+const addonPrices = {
+  fps:999,
+  enhanced:1499
+};
+
+const deliveryTimes = {
+
+  starter:{
+    10:"2–3 business days",
+    20:"3–4 business days",
+    30:"4–5 business days"
+  },
+
+  cinematic:{
+    10:"3–4 business days",
+    20:"4–6 business days",
+    30:"6–7 business days"
+  },
+
+  pro:{
+    10:"5–7 business days",
+    20:"7–9 business days",
+    30:"9–12 business days"
+  }
+
+};
+
+let selectedPackage = "starter";
+let selectedDuration = 10;
+let selectedResolution = "720p";
+let selectedFormat = "9:16";
+let submitting = false;
+
+
+/* ---------------------------
+   HELPERS
+---------------------------- */
+
+function money(value){
+  return "₹" + Number(value).toLocaleString("en-IN");
+}
+
+function selectPackage(packageName){
+
+  selectedPackage = packageName;
+
+  document.querySelectorAll(".card[data-package]").forEach(card=>{
+    const isSelected = card.dataset.package === packageName;
+
+    card.classList.toggle("selected",isSelected);
+
+    const btn = card.querySelector(".select-btn");
+
+    if(btn){
+      btn.textContent = isSelected ? "Selected" : "Choose";
+    }
+  });
+
+  updateUI();
+}
+
+function setupOptions(containerId, callback){
+
+  const container = document.getElementById(containerId);
+
+  container.querySelectorAll(".option").forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+      container.querySelectorAll(".option")
+        .forEach(btn=>btn.classList.remove("selected"));
+
+      button.classList.add("selected");
+
+      callback(button.dataset.value);
+
+      updateUI();
+
+    });
+
+  });
+
+}
+
+setupOptions("durationOptions",value=>{
+  selectedDuration = Number(value);
+});
+
+setupOptions("resolutionOptions",value=>{
+  selectedResolution = value;
+});
+
+setupOptions("formatOptions",value=>{
+  selectedFormat = value;
+});
+
+
+/* ---------------------------
+   PRICE / SUMMARY
+---------------------------- */
+
+function getBasePrice(){
+
+  return pricing[selectedPackage][selectedResolution][selectedDuration];
+
+}
+
+function getAddonTotal(){
+
+  let total = 0;
+
+  if(document.getElementById("fpsAddon").checked){
+    total += addonPrices.fps;
+  }
+
+  if(document.getElementById("enhancedAddon").checked){
+    total += addonPrices.enhanced;
+  }
+
+  return total;
+
+}
+
+function getTotal(){
+
+  return getBasePrice() + getAddonTotal();
+
+}
+
+function getAddonNames(){
+
+  const names = [];
+
+  if(document.getElementById("fpsAddon").checked){
+    names.push("FPS Boost +₹999");
+  }
+
+  if(document.getElementById("enhancedAddon").checked){
+    names.push("Video Enhanced +₹1,499");
+  }
+
+  return names;
+
+}
+
+function updateUI(){
+
+  const base = getBasePrice();
+  const total = getTotal();
+
+  document.getElementById("summaryPackage").textContent =
+    selectedPackage === "cinematic"
+      ? "Cinematic"
+      : selectedPackage.charAt(0).toUpperCase() + selectedPackage.slice(1);
+
+  document.getElementById("summaryDuration").textContent =
+    selectedDuration + " sec";
+
+  document.getElementById("summaryResolution").textContent =
+    selectedResolution;
+
+  document.getElementById("summaryFormat").textContent =
+    selectedFormat;
+
+  const addons = getAddonNames();
+
+  document.getElementById("summaryAddons").textContent =
+    addons.length ? addons.join(", ") : "None";
+
+  document.getElementById("summaryTotal").textContent =
+    money(total);
+
+  document.getElementById("mobileTotal").textContent =
+    money(total);
+
+  const delivery =
+    deliveryTimes[selectedPackage][selectedDuration];
+
+  document.getElementById("summaryDelivery").textContent =
+    delivery;
+
+  document.getElementById("estimatedDelivery").value =
+    delivery;
+
+  updateStartingPrices();
+
+}
+
+function updateStartingPrices(){
+
+  document.getElementById("starterPrice").innerHTML =
+    money(pricing.starter["480p"][10]) +
+    ' <small>starting</small>';
+
+  document.getElementById("cinematicPrice").innerHTML =
+    money(pricing.cinematic["480p"][10]) +
+    ' <small>starting</small>';
+
+  document.getElementById("proPrice").innerHTML =
+    money(pricing.pro["480p"][10]) +
+    ' <small>starting</small>';
+
+}
+
+
+/* ---------------------------
+   ADDONS
+---------------------------- */
+
+document.getElementById("fpsAddon")
+  .addEventListener("change",updateUI);
+
+document.getElementById("enhancedAddon")
+  .addEventListener("change",updateUI);
+
+
+/* ---------------------------
+   FILES
+---------------------------- */
+
+document.getElementById("files")
+  .addEventListener("change",function(){
+
+    const list = document.getElementById("fileList");
+
+    list.innerHTML = "";
+
+    Array.from(this.files).forEach(file=>{
+
+      const div = document.createElement("div");
+
+      div.className = "file-name";
+
+      div.textContent = "• " + file.name;
+
+      list.appendChild(div);
+
+    });
+
+  });
+
+
+/* ---------------------------
+   VALIDATION
+---------------------------- */
+
+function showError(inputId,errorId,show){
+
+  const input = document.getElementById(inputId);
+  const error = document.getElementById(errorId);
+
+  input.classList.toggle("error",show);
+  error.classList.toggle("show",show);
+
+}
+
+function validateForm(){
+
+  let valid = true;
+
+  const name =
+    document.getElementById("name").value.trim();
+
+  const whatsapp =
+    document.getElementById("whatsapp").value.trim();
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const projectType =
+    document.getElementById("projectType").value;
+
+  const brief =
+    document.getElementById("brief").value.trim();
+
+
+  const nameInvalid = name.length < 2;
+
+  showError(
+    "name",
+    "nameError",
+    nameInvalid
+  );
+
+  if(nameInvalid) valid = false;
+
+
+  const phoneDigits =
+    whatsapp.replace(/\D/g,"");
+
+  const phoneInvalid =
+    phoneDigits.length < 10;
+
+  showError(
+    "whatsapp",
+    "whatsappError",
+    phoneInvalid
+  );
+
+  if(phoneInvalid) valid = false;
+
+
+  const emailInvalid =
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  showError(
+    "email",
+    "emailError",
+    emailInvalid
+  );
+
+  if(emailInvalid) valid = false;
+
+
+  const typeInvalid =
+    !projectType;
+
+  showError(
+    "projectType",
+    "projectTypeError",
+    typeInvalid
+  );
+
+  if(typeInvalid) valid = false;
+
+
+  const briefInvalid =
+    brief.length < 10;
+
+  showError(
+    "brief",
+    "briefError",
+    briefInvalid
+  );
+
+  if(briefInvalid) valid = false;
+
+
+  if(!valid){
+
+    const firstError =
+      document.querySelector(".error");
+
+    if(firstError){
+
+      firstError.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+
+      setTimeout(()=>{
+        firstError.focus();
+      },400);
+
+    }
+
+  }
+
+  return valid;
+
+}
+
+
+/* ---------------------------
+   WHATSAPP MESSAGE
+---------------------------- */
+
+function buildWhatsAppMessage(){
+
+  const name =
+    document.getElementById("name").value.trim();
+
+  const whatsapp =
+    document.getElementById("whatsapp").value.trim();
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const projectType =
+    document.getElementById("projectType").value;
+
+  const deadline =
+    document.getElementById("deadline").value || "Not specified";
+
+  const brief =
+    document.getElementById("brief").value.trim();
+
+  const links =
+    document.getElementById("links").value.trim() || "None";
+
+  const fileInput =
+    document.getElementById("files");
+
+  const fileNames =
+    fileInput.files.length
+      ? Array.from(fileInput.files)
+          .map(file=>"- " + file.name)
+          .join("\n")
+      : "None";
+
+
+  const packageName =
+    selectedPackage === "cinematic"
+      ? "Cinematic"
+      : selectedPackage.charAt(0).toUpperCase()
+        + selectedPackage.slice(1);
+
+  const addons =
+    getAddonNames();
+
+  const addonText =
+    addons.length
+      ? addons.join(", ")
+      : "None";
+
+
+  const base =
+    getBasePrice();
+
+  const addonTotal =
+    getAddonTotal();
+
+  const total =
+    getTotal();
+
+  const delivery =
+    deliveryTimes[selectedPackage][selectedDuration];
+
+
+  return `*SARB VISUALS — NEW VIDEO PROJECT*
+
+━━━━━━━━━━━━━━━━━━
+CLIENT INFORMATION
+━━━━━━━━━━━━━━━━━━
+
+Name: ${name}
+WhatsApp: ${whatsapp}
+Email: ${email}
+
+━━━━━━━━━━━━━━━━━━
+PROJECT INFORMATION
+━━━━━━━━━━━━━━━━━━
+
+Project Type: ${projectType}
+
+Package: ${packageName}
+Duration: ${selectedDuration} sec
+Resolution: ${selectedResolution}
+Format: ${selectedFormat}
+
+━━━━━━━━━━━━━━━━━━
+DELIVERY
+━━━━━━━━━━━━━━━━━━
+
+Estimated Delivery: ${delivery}
+Preferred Deadline: ${deadline}
+
+Final timeline will be confirmed after project review.
+
+━━━━━━━━━━━━━━━━━━
+PRICING
+━━━━━━━━━━━━━━━━━━
+
+Production: ${money(base)}
+Add-ons: ${addonText}
+Add-on Total: ${money(addonTotal)}
+Estimated Total: *${money(total)}*
+
+━━━━━━━━━━━━━━━━━━
+PROJECT BRIEF
+━━━━━━━━━━━━━━━━━━
+
+${brief}
+
+━━━━━━━━━━━━━━━━━━
+REFERENCE LINKS
+━━━━━━━━━━━━━━━━━━
+
+${links}
+
+━━━━━━━━━━━━━━━━━━
+REFERENCE FILES
+━━━━━━━━━━━━━━━━━━
+
+${fileNames}
+
+━━━━━━━━━━━━━━━━━━
+NEXT STEP
+━━━━━━━━━━━━━━━━━━
+
+The reference files selected on the website
+must be attached manually in this WhatsApp chat
+before sending.
+
+Final scope, quote and timeline will be confirmed
+after project review.`;
+
+}
+
+
+/* ---------------------------
+   SUBMIT
+---------------------------- */
+
+function submitOrder(){
+
+  if(submitting){
+    return;
+  }
+
+  if(!validateForm()){
+    return;
+  }
+
+  submitting = true;
+
+  const button =
+    document.getElementById("submitBtn");
+
+  button.disabled = true;
+  button.textContent = "Opening WhatsApp…";
+
+
+  const message =
+    buildWhatsAppMessage();
+
+  const whatsappURL =
+    "https://wa.me/" +
+    WHATSAPP_NUMBER +
+    "?text=" +
+    encodeURIComponent(message);
+
+
+  /*
+    Direct navigation is intentional.
+    It works reliably on mobile and avoids popup blockers.
+  */
+
+  window.location.href = whatsappURL;
+
+}
+
+
+/* ---------------------------
+   MODAL
+---------------------------- */
+
+function closeModal(){
+
+  document
+    .getElementById("successModal")
+    .classList.remove("show");
+
+}
+
+
+/* ---------------------------
+   CLEAR VALIDATION LIVE
+---------------------------- */
+
+[
+  ["name","nameError"],
+  ["whatsapp","whatsappError"],
+  ["email","emailError"],
+  ["projectType","projectTypeError"],
+  ["brief","briefError"]
+].forEach(pair=>{
+
+  const input =
+    document.getElementById(pair[0]);
+
+  input.addEventListener("input",()=>{
+
+    if(input.value.trim()){
+
+      input.classList.remove("error");
+
+      document
+        .getElementById(pair[1])
+        .classList.remove("show");
+
+    }
+
+  });
+
+});
+
+
+/* ---------------------------
+   INITIAL STATE
+---------------------------- */
+
+updateUI();
+
+</script>
+
+</body>
+</html>
